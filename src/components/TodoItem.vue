@@ -44,11 +44,6 @@ export default {
   },
   watch:{
     checkAll(){
-      // if(this.checkAll){
-      //   this.completed = true
-      // } else{
-      //   this.completed = this.todo.completed
-      // }
       this.completed = this.checkAll ? true : this.todo.completed
     }
   },
@@ -62,8 +57,9 @@ export default {
   },
 
   methods:{
-    removeTodo(index){
-      eventBus.$emit('removedTodo', index)
+    removeTodo(id){
+      this.$store.dispatch('deleteTodo', id)
+
     },
     editTodo(){
       this.beforeEditCache = this.title
@@ -74,15 +70,24 @@ export default {
         this.title = this.beforeEditCache
       }
       this.editing = false
-      eventBus.$emit('finishedEdit', {
-        'index': this.index,
-        'todo': {
+      this.$store.dispatch('updateTodo', {
           'id': this.id,
           'title': this.title,
           'completed': this.completed,
           'editing': this.editing,
-        }
-      })
+        })
+
+
+
+      // eventBus.$emit('finishedEdit', {
+      //   'index': this.index,
+      //   'todo': {
+      //     'id': this.id,
+      //     'title': this.title,
+      //     'completed': this.completed,
+      //     'editing': this.editing,
+      //   }
+      // })
 
     },
     cancelEdit(){
