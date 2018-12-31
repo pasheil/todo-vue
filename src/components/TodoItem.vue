@@ -7,7 +7,7 @@
       v-model="title" @blur="doneEdit"
       @keyup.enter="doneEdit" @keyup.esc="cancelEdit" v-focus>
     </div>
-    <div class="remove-item" @click="removeTodo(index)">
+    <div class="remove-item" @click="removeTodo(todo.id)">
       &times;
     </div>
   </div>
