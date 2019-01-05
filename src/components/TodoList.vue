@@ -67,6 +67,7 @@ export default {
 
 
   created(){
+    this.$store.dispatch('initRealtimeListeners')
     this.$store.dispatch('retrieveTodos')
   },
 
@@ -212,6 +213,7 @@ button{
   font-size: 14px;
   background-color: white;
   appearance: none;
+  padding: 4px;
 
   &:hover{
     backgroun: lightgreen;
